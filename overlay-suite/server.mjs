@@ -232,6 +232,7 @@ async function loadHttpsOptions() {
 function loadDotEnv() {
   loadEnvFile(join(root, '.env'))
   loadEnvFile(resolve(root, '..', '.env'), {
+    onlyKeys: ['SPOTIFY_CLIENT_ID', 'SPOTIFY_CLIENT_SECRET', 'SPOTIFY_REFRESH_TOKEN'],
     overrideKeys: ['SPOTIFY_CLIENT_ID', 'SPOTIFY_CLIENT_SECRET', 'SPOTIFY_REFRESH_TOKEN'],
   })
 }
@@ -248,6 +249,7 @@ function loadEnvFile(envPath, options = {}) {
 
       const key = trimmed.slice(0, separator).trim()
       const value = trimmed.slice(separator + 1).trim().replace(/^["']|["']$/g, '')
+      if (options.onlyKeys && !options.onlyKeys.includes(key)) continue
       if (options.overrideKeys?.includes(key) || !process.env[key]) process.env[key] = value
     }
   } catch {
