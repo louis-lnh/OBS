@@ -390,6 +390,11 @@ async function handleTwitchApi(request, response, url) {
 }
 
 async function handleOverlayApi(request, response, url) {
+  if (request.method === 'GET' && url.pathname === '/api/overlay/events') {
+    await handleOverlayEvents(request, response)
+    return
+  }
+
   if (request.method === 'GET' && url.pathname === '/api/overlay/goals') {
     sendJson(response, 200, await readOverlayGoals())
     return
@@ -432,6 +437,36 @@ async function handleOverlayApi(request, response, url) {
   }
 
   sendJson(response, 404, { error: 'Unknown overlay API route' })
+}
+
+const overlayEventClients = new Set()
+
+async function handleOverlayEvents(request, response) {
+  response.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-store',
+    Connection: 'keep-alive',
+    'X-Accel-Buffering': 'no',
+  })
+
+  response.write(`event: state\ndata: ${JSON.stringify(await readOverlayState())}\n\n`)
+  overlayEventClients.add(response)
+
+  request.on('close', () => {
+    overlayEventClients.delete(response)
+  })
+}
+
+function broadcastOverlayState(state) {
+  const chunk = `event: state\ndata: ${JSON.stringify(state)}\n\n`
+
+  for (const client of overlayEventClients) {
+    try {
+      client.write(chunk)
+    } catch {
+      overlayEventClients.delete(client)
+    }
+  }
 }
 
 function overlayActionPayload(pathname, body) {
@@ -1326,7 +1361,11 @@ async function readOverlayState() {
 }
 
 async function updateOverlayState(payload) {
-  overlayStateWrite = overlayStateWrite.catch(() => null).then(() => applyOverlayStateUpdate(payload))
+  overlayStateWrite = overlayStateWrite.catch(() => null).then(async () => {
+    const next = await applyOverlayStateUpdate(payload)
+    broadcastOverlayState(next)
+    return next
+  })
   return overlayStateWrite
 }
 

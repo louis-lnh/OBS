@@ -501,11 +501,31 @@ export function useTwitchChat() {
   return messages.filter((message) => now - message.timestamp < 45_000).slice(-6)
 }
 
+function subscribeOverlayState(onState: (state: OverlayStateResponse) => void) {
+  if (!('EventSource' in window)) return () => undefined
+
+  const events = new EventSource('/api/overlay/events')
+
+  events.addEventListener('state', (event) => {
+    try {
+      onState(JSON.parse((event as MessageEvent<string>).data) as OverlayStateResponse)
+    } catch {
+      // Ignore malformed event payloads and keep the polling fallback alive.
+    }
+  })
+
+  return () => events.close()
+}
+
 export function useOverlayCamera() {
   const [camera, setCamera] = useState<OverlayCameraState>({ enabled: true })
 
   useEffect(() => {
     let cancelled = false
+
+    function applyOverlayState(state: OverlayStateResponse) {
+      if (!cancelled) setCamera((current) => normalizeCamera(state.camera, current))
+    }
 
     async function pollOverlayState() {
       try {
@@ -513,17 +533,19 @@ export function useOverlayCamera() {
         if (!response.ok) return
 
         const state = (await response.json()) as OverlayStateResponse
-        if (!cancelled) setCamera((current) => normalizeCamera(state.camera, current))
+        applyOverlayState(state)
       } catch {
         // Static preview routes do not provide the overlay API.
       }
     }
 
     void pollOverlayState()
+    const unsubscribe = subscribeOverlayState(applyOverlayState)
     const interval = window.setInterval(pollOverlayState, 2000)
 
     return () => {
       cancelled = true
+      unsubscribe()
       window.clearInterval(interval)
     }
   }, [])
@@ -537,23 +559,29 @@ export function useOverlayInfoMode() {
   useEffect(() => {
     let cancelled = false
 
+    function applyOverlayState(state: OverlayStateResponse) {
+      if (!cancelled) setInfo((current) => normalizeMode(state.info, current, ['spotify', 'valorant', 'premier', 'lifesteal', 'timer']))
+    }
+
     async function pollOverlayState() {
       try {
         const response = await fetch('/api/overlay/state', { cache: 'no-store' })
         if (!response.ok) return
 
         const state = (await response.json()) as OverlayStateResponse
-        if (!cancelled) setInfo((current) => normalizeMode(state.info, current, ['spotify', 'valorant', 'premier', 'lifesteal', 'timer']))
+        applyOverlayState(state)
       } catch {
         // Static preview routes do not provide the overlay API.
       }
     }
 
     void pollOverlayState()
+    const unsubscribe = subscribeOverlayState(applyOverlayState)
     const interval = window.setInterval(pollOverlayState, 2000)
 
     return () => {
       cancelled = true
+      unsubscribe()
       window.clearInterval(interval)
     }
   }, [])
@@ -567,23 +595,29 @@ export function useOverlayAdMode() {
   useEffect(() => {
     let cancelled = false
 
+    function applyOverlayState(state: OverlayStateResponse) {
+      if (!cancelled) setAd((current) => normalizeMode(state.ad, current, ['default', 'minecraft']))
+    }
+
     async function pollOverlayState() {
       try {
         const response = await fetch('/api/overlay/state', { cache: 'no-store' })
         if (!response.ok) return
 
         const state = (await response.json()) as OverlayStateResponse
-        if (!cancelled) setAd((current) => normalizeMode(state.ad, current, ['default', 'minecraft']))
+        applyOverlayState(state)
       } catch {
         // Static preview routes do not provide the overlay API.
       }
     }
 
     void pollOverlayState()
+    const unsubscribe = subscribeOverlayState(applyOverlayState)
     const interval = window.setInterval(pollOverlayState, 2000)
 
     return () => {
       cancelled = true
+      unsubscribe()
       window.clearInterval(interval)
     }
   }, [])
@@ -696,10 +730,12 @@ export function useOverlayGoals() {
     }
 
     void pollGoals()
-    const interval = window.setInterval(pollGoals, 15_000)
+    const unsubscribe = subscribeOverlayState(() => void pollGoals())
+    const interval = window.setInterval(pollGoals, 5000)
 
     return () => {
       cancelled = true
+      unsubscribe()
       window.clearInterval(interval)
     }
   }, [])
@@ -730,29 +766,35 @@ export function useEventTimer() {
   useEffect(() => {
     let cancelled = false
 
+    function applyOverlayState(state: OverlayStateResponse) {
+      if (cancelled || !state.timer) return
+
+      setTimer((current) => {
+        const next = normalizeTimer(state.timer, current)
+        writeJson(TIMER_STORAGE_KEY, next)
+        return next
+      })
+    }
+
     async function pollOverlayState() {
       try {
         const response = await fetch('/api/overlay/state', { cache: 'no-store' })
         if (!response.ok) return
 
         const state = (await response.json()) as OverlayStateResponse
-        if (cancelled || !state.timer) return
-
-        setTimer((current) => {
-          const next = normalizeTimer(state.timer, current)
-          writeJson(TIMER_STORAGE_KEY, next)
-          return next
-        })
+        applyOverlayState(state)
       } catch {
         // Static preview routes do not provide the overlay API.
       }
     }
 
     void pollOverlayState()
+    const unsubscribe = subscribeOverlayState(applyOverlayState)
     const interval = window.setInterval(pollOverlayState, 1000)
 
     return () => {
       cancelled = true
+      unsubscribe()
       window.clearInterval(interval)
     }
   }, [])
@@ -787,23 +829,29 @@ export function useEventTimerCard() {
   useEffect(() => {
     let cancelled = false
 
+    function applyOverlayState(state: OverlayStateResponse) {
+      if (!cancelled) setConfig((current) => normalizeEventTimer(state.eventTimer, current))
+    }
+
     async function pollOverlayState() {
       try {
         const response = await fetch('/api/overlay/state', { cache: 'no-store' })
         if (!response.ok) return
 
         const state = (await response.json()) as OverlayStateResponse
-        if (!cancelled) setConfig((current) => normalizeEventTimer(state.eventTimer, current))
+        applyOverlayState(state)
       } catch {
         // Static preview routes do not provide the overlay API.
       }
     }
 
     void pollOverlayState()
+    const unsubscribe = subscribeOverlayState(applyOverlayState)
     const interval = window.setInterval(pollOverlayState, 2000)
 
     return () => {
       cancelled = true
+      unsubscribe()
       window.clearInterval(interval)
     }
   }, [])
