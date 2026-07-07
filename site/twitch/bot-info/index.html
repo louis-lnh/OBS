@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./shd-logo-no-text.png" />
+    <title>SHD Twitch Commands</title>
+    <meta
+      name="description"
+      content="Viewer commands, Channel Points rewards, and SHD token info for the SHD Twitch stream."
+    />
+    <link rel="stylesheet" href="./bot-info.css" />
+  </head>
+
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand-mark" href="/" aria-label="SHD home">
+          <img src="./shd-logo-no-text.png" alt="" />
+          <span>SHD Twitch</span>
+        </a>
+        <nav aria-label="Page sections">
+          <a href="#rewards">Rewards</a>
+          <a href="#commands">Commands</a>
+          <a href="#tokens">Tokens</a>
+          <a href="#music">Music</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <span class="hero-watermark" aria-hidden="true">S H D</span>
+          <img class="hero-logo" src="./shd logo.png" alt="SHD Esports" />
+          <span class="chip">Twitch Bot Guide</span>
+          <h1>
+            <span>Commands</span>
+            <span>& Rewards</span>
+          </h1>
+          <p>
+            Use this page while watching the stream. Chat commands start with
+            <strong>!</strong>. Song requests, watchtime, and token packs live in
+            Twitch Channel Points.
+          </p>
+        </section>
+
+        <section class="snapshot" aria-label="Quick facts">
+          <article>
+            <span>Prefix</span>
+            <strong>!</strong>
+          </article>
+          <article>
+            <span>Currency</span>
+            <strong>SHD tokens</strong>
+          </article>
+          <article>
+            <span>Song Requests</span>
+            <strong>Channel Points</strong>
+          </article>
+          <article>
+            <span>Watchtime</span>
+            <strong>Reward redeem</strong>
+          </article>
+        </section>
+
+        <section id="rewards" class="section">
+          <div class="section-intro">
+            <span class="panel-kicker">Channel Points</span>
+            <h2>Rewards That Do Something</h2>
+            <p>
+              These rewards are handled by the bot directly. Redeem them in Twitch
+              instead of typing a normal command.
+            </p>
+          </div>
+
+          <div class="reward-grid">
+            <article class="reward-card reward-card--featured">
+              <div>
+                <span>500 points</span>
+                <h3>Song Request</h3>
+              </div>
+              <p>Enter a Spotify link, or type artist and song name for the best match.</p>
+            </article>
+
+            <article class="reward-card">
+              <div>
+                <span>1,000 points</span>
+                <h3>Watchtime</h3>
+              </div>
+              <p>Redeem once and the bot replies with your current stream watchtime.</p>
+            </article>
+
+            <article class="reward-card">
+              <div>
+                <span>500 points</span>
+                <h3>Small SHD Token Pack</h3>
+              </div>
+              <p>Adds 50 SHD tokens to your balance.</p>
+            </article>
+
+            <article class="reward-card">
+              <div>
+                <span>1,500 points</span>
+                <h3>SHD Token Pack</h3>
+              </div>
+              <p>Adds 200 SHD tokens to your balance.</p>
+            </article>
+
+            <article class="reward-card">
+              <div>
+                <span>2,500 points</span>
+                <h3>Big SHD Token Pack</h3>
+              </div>
+              <p>Adds 400 SHD tokens. High-risk financial advice from Twitch chat.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="commands" class="section">
+          <div class="section-intro align-left">
+            <span class="panel-kicker">Chat Commands</span>
+            <h2>Useful In Chat</h2>
+            <p>Most viewer commands are quick lookups or stream interaction tools.</p>
+          </div>
+
+          <div class="command-board">
+            <article class="command-group">
+              <h3>Stream Info</h3>
+              <div class="command-list">
+                <div><code>!discord</code><span>Join the SHD Discord.</span></div>
+                <div><code>!sens</code><span>Current Valorant sensitivity.</span></div>
+                <div><code>!dpi</code><span>Current mouse DPI.</span></div>
+                <div><code>!rank</code><span>Current rank info when available.</span></div>
+                <div><code>!crosshair</code><span>Valorant crosshair code.</span></div>
+                <div><code>!premier</code><span>SHD Premier team info.</span></div>
+                <div><code>!lifesteal</code><span>Lifesteal project link and info.</span></div>
+              </div>
+            </article>
+
+            <article class="command-group">
+              <h3>Token Commands</h3>
+              <div class="command-list">
+                <div><code>!points</code><span>Check your SHD token balance.</span></div>
+                <div><code>!top</code><span>Show the token leaderboard.</span></div>
+                <div><code>!topup</code><span>Small recovery when your balance is empty.</span></div>
+                <div><code>!give user amount</code><span>Send tokens to another viewer.</span></div>
+                <div><code>!gamble amount</code><span>Gamble tokens.</span></div>
+                <div><code>!dice amount</code><span>Roll for tokens.</span></div>
+                <div><code>!coinflip amount</code><span>Heads or tails.</span></div>
+                <div><code>!slots amount</code><span>Spin the slots.</span></div>
+              </div>
+            </article>
+
+            <article class="command-group">
+              <h3>Chat Fun</h3>
+              <div class="command-list">
+                <div><code>!lurk</code><span>Let chat know you are lurking.</span></div>
+                <div><code>!unlurk</code><span>Come back from lurk mode.</span></div>
+                <div><code>!hug user</code><span>Send a hug.</span></div>
+                <div><code>!bonk user</code><span>Bonk someone politely.</span></div>
+                <div><code>!8ball question</code><span>Ask chat fate a question.</span></div>
+                <div><code>!rate thing</code><span>Get a very serious rating.</span></div>
+                <div><code>!choose a or b</code><span>Make the bot choose.</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="tokens" class="section two-column">
+          <article class="feature-panel">
+            <span class="panel-kicker">SHD Tokens</span>
+            <h2>Mostly For Gambling</h2>
+            <p>
+              SHD tokens are the stream currency. Use them for gamble commands,
+              token packs, and future stream ideas. Twitch Channel Points can buy
+              token packs, but tokens stay inside this chat bot.
+            </p>
+          </article>
+
+          <article class="feature-panel compact">
+            <h3>Fast Checks</h3>
+            <div class="pill-list">
+              <code>!points</code>
+              <code>!top</code>
+              <code>!topup</code>
+              <code>!gamble</code>
+              <code>!dice</code>
+              <code>!coinflip</code>
+              <code>!slots</code>
+            </div>
+          </article>
+        </section>
+
+        <section id="music" class="section two-column">
+          <article class="feature-panel">
+            <span class="panel-kicker">Spotify</span>
+            <h2>Requesting Songs</h2>
+            <p>
+              Use the Song Request Channel Points reward. Spotify links are exact.
+              If you type text, include artist and song name so the bot does not
+              grab a remix or cover.
+            </p>
+          </article>
+
+          <article class="feature-panel compact">
+            <h3>Best Inputs</h3>
+            <div class="example-list">
+              <code>spotify track link</code>
+              <code>Lady Gaga - Just Dance</code>
+              <code>artist - song title</code>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div>
+          <strong>SHD Twitch Bot</strong>
+          <span>Commands, rewards, and chat chaos for the stream.</span>
+        </div>
+        <a href="https://shd-esports.com">shd-esports.com</a>
+      </footer>
+    </div>
+  </body>
+</html>

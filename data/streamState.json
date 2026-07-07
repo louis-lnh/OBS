@@ -1,0 +1,16 @@
+{
+  "title": null,
+  "category": null,
+  "map": null,
+  "agent": null,
+  "duo": null,
+  "recording": false,
+  "markers": [],
+  "obs": {
+    "enabled": false,
+    "currentScene": null,
+    "camera": true,
+    "handcam": false,
+    "mutedSources": []
+  }
+}

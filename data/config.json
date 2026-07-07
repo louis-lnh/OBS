@@ -1,0 +1,84 @@
+{
+  "prefix": "!",
+  "defaultCooldownSeconds": 5,
+  "ownerCooldownSeconds": 1,
+  "currencyName": "SHD tokens",
+  "zeroBalanceTopupAmount": 1,
+  "followTokenReward": 1,
+  "subTokenReward": 10,
+  "giftSubTokenReward": 10,
+  "commandsUrl": "https://shd-esports.com/twitch/bot-info",
+  "dailyAmount": 5,
+  "gambleWinChance": 0.67,
+  "maxChatMessageLength": 450,
+  "maxOutboundChatQueue": 25,
+  "outboundChatIntervalMs": 100,
+  "watchtimePollIntervalMs": 60000,
+  "channelPoints": {
+    "watchtimeCost": 1000,
+    "watchtimeRewardId": "",
+    "songRequestCost": 500,
+    "songRequestRewardId": "",
+    "tokenPacks": [
+      {
+        "title": "Small SHD Token Pack",
+        "cost": 500,
+        "amount": 50,
+        "rewardId": ""
+      },
+      {
+        "title": "SHD Token Pack",
+        "cost": 1500,
+        "amount": 200,
+        "rewardId": ""
+      },
+      {
+        "title": "Big SHD Token Pack",
+        "cost": 2500,
+        "amount": 400,
+        "rewardId": ""
+      }
+    ]
+  },
+  "owners": [],
+  "admins": [],
+  "moderators": [],
+  "timersEnabled": true,
+  "eventSub": {
+    "follow": false,
+    "subscribe": false,
+    "giftSub": false,
+    "raid": false,
+    "cheer": false,
+    "channelPointRedemption": false
+  },
+  "filters": {
+    "enabled": true,
+    "linkFilter": false,
+    "allowedDomains": [
+      "twitch.tv",
+      "discord.gg"
+    ],
+    "linkTimeoutSeconds": 30,
+    "capsFilter": false,
+    "capsMinLength": 18,
+    "capsRatio": 0.7,
+    "symbolFilter": false,
+    "symbolMinLength": 16,
+    "symbolRatio": 0.55,
+    "emoteFilter": false,
+    "emoteMaxCount": 10,
+    "mentionFilter": false,
+    "maxMentions": 4,
+    "bannedWords": [],
+    "scamPatterns": [
+      "buy followers",
+      "cheap viewers",
+      "best viewers",
+      "promotion available"
+    ],
+    "repeatFilter": false,
+    "repeatWindowSeconds": 20,
+    "spamTimeoutSeconds": 0
+  }
+}

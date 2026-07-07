@@ -1,0 +1,46 @@
+{
+  "discord": {
+    "response": "Join SHD's Discord Server: https://discord.gg/vj2EJ9FjBV",
+    "permission": "viewer",
+    "cooldownSeconds": 30,
+    "usageCount": 0
+  },
+  "sens": {
+    "response": "Valorant sens: 0.07",
+    "permission": "viewer",
+    "cooldownSeconds": 20,
+    "usageCount": 0
+  },
+  "rank": {
+    "response": "Peak rank: Ascendant 1",
+    "permission": "viewer",
+    "cooldownSeconds": 20,
+    "usageCount": 0
+  },
+  "dpi": {
+    "response": "DPI: 1600",
+    "permission": "viewer",
+    "cooldownSeconds": 20,
+    "usageCount": 0
+  },
+  "crosshair": {
+    "response": "Crosshair code: ",
+    "permission": "viewer",
+    "cooldownSeconds": 20,
+    "usageCount": 0
+  },
+  "premier": {
+    "response": "Premier info: SHD Germany - Elite 4 - No Games played yet",
+    "permission": "viewer",
+    "cooldownSeconds": 30,
+    "usageCount": 0
+  },
+  "lifesteal": {
+    "response": "SHD is hosting a Lifesteal SMP shortly, learn more about it at: https://lifesteal.shd-esports.com",
+    "permission": "viewer",
+    "cooldownSeconds": 10,
+    "usageCount": 4,
+    "editedBy": "luigi_ay",
+    "editedAt": "2026-07-02T19:12:16.353Z"
+  }
+}

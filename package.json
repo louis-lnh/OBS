@@ -1,0 +1,38 @@
+{
+  "name": "shd-twitch-bot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal Twitch chat bot for SHD streams and friends.",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:bot": "node src/index.js",
+    "start:overlay": "npm --prefix overlay-suite run start",
+    "build": "npm --prefix overlay-suite run build",
+    "check:all": "npm run check && npm test && npm --prefix overlay-suite run build",
+    "dev": "node --watch src/index.js",
+    "overlay:dev": "npm --prefix overlay-suite run dev",
+    "overlay:build": "npm --prefix overlay-suite run build",
+    "overlay:control": "node scripts/overlay-control.js",
+    "check": "node scripts/check.js",
+    "test": "node scripts/smoke-test.js",
+    "simulate": "node scripts/simulate.js",
+    "export:commands": "node scripts/export-commands.js",
+    "spotify:auth-url": "node scripts/spotify-auth-url.js",
+    "spotify:token": "node scripts/spotify-exchange-code.js",
+    "spotify:check": "node scripts/spotify-check.js",
+    "twitch:auth-url": "node scripts/twitch-auth-url.js",
+    "twitch:broadcaster-auth-url": "node scripts/twitch-auth-url.js --broadcaster",
+    "twitch:check": "node scripts/twitch-check.js",
+    "twitch:broadcaster-check": "node scripts/twitch-check.js --broadcaster",
+    "twitch:token": "node scripts/twitch-exchange-code.js",
+    "twitch:broadcaster-token": "node scripts/twitch-exchange-code.js --broadcaster"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ws": "^8.18.0"
+  }
+}

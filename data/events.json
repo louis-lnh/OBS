@@ -1,0 +1,34 @@
+{
+  "firstTimeChatter": {
+    "enabled": false,
+    "message": "Welcome @{user}, first time chatting here!"
+  },
+  "returningChatter": {
+    "enabled": false,
+    "message": "Welcome back @{user}!"
+  },
+  "follow": {
+    "enabled": true,
+    "message": "Welcome @{user}, thanks for the follow!"
+  },
+  "sub": {
+    "enabled": true,
+    "message": "Huge thanks to @{user} for the sub!"
+  },
+  "giftSub": {
+    "enabled": true,
+    "message": "@{user} gifted {amount} sub(s). Huge."
+  },
+  "raid": {
+    "enabled": true,
+    "message": "@{user} just raided with {viewers} viewers. Welcome in everyone!"
+  },
+  "cheer": {
+    "enabled": true,
+    "message": "Thanks @{user} for {bits} bits!"
+  },
+  "channelPointRedemption": {
+    "enabled": false,
+    "message": "@{user} redeemed {reward}."
+  }
+}

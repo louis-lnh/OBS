@@ -1,0 +1,23 @@
+[
+  {
+    "name": "discord",
+    "enabled": true,
+    "message": "Join the Discord: https://discord.gg/vj2EJ9FjBV",
+    "intervalMinutes": 30,
+    "minChatMessages": 15
+  },
+  {
+    "name": "commands",
+    "enabled": true,
+    "message": "Find all Commands at: https://shd-esports.com/twitch/bot-info",
+    "intervalMinutes": 20,
+    "minChatMessages": 15
+  },
+  {
+    "name": "crosshair",
+    "enabled": false,
+    "message": "Use !crosshair for the Valorant crosshair code.",
+    "intervalMinutes": 30,
+    "minChatMessages": 12
+  }
+]

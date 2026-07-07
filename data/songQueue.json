@@ -1,0 +1,35 @@
+{
+  "enabled": true,
+  "spotifyEnabled": true,
+  "approvalRequired": false,
+  "requestCost": 0,
+  "maxDurationMs": 600000,
+  "allowExplicit": false,
+  "blockedTerms": [],
+  "blockedArtists": [],
+  "volume": 50,
+  "deviceId": null,
+  "nowPlaying": null,
+  "pending": [],
+  "queue": [
+    {
+      "id": "mr8bcgn9",
+      "query": "just dance",
+      "spotifyUri": "spotify:track:1j24CcwBYhPawPwtOYRAJU",
+      "label": "Just Dance - Angelcore Remix - odex",
+      "requestedBy": "luigi_ay",
+      "requestedAt": "2026-07-05T21:38:40.415Z",
+      "status": "sent-to-spotify"
+    },
+    {
+      "id": "mr8bd9pk",
+      "query": "i really want to stay at your house",
+      "spotifyUri": "spotify:track:7mykoq6R3BArsSpNDjFQTm",
+      "label": "I Really Want to Stay at Your House - Rosa Walton, Hallie Coggins",
+      "requestedBy": "kaeru008",
+      "requestedAt": "2026-07-05T21:39:18.045Z",
+      "status": "sent-to-spotify"
+    }
+  ],
+  "history": []
+}
